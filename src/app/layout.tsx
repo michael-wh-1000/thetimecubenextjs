@@ -6,9 +6,7 @@ import { Provider } from "@/lib/providers";
 import localFont from "next/font/local";
 import ReactGA from "react-ga4";
 import { Analytics } from "@vercel/analytics/react";
-
-ReactGA.initialize("G-Y2TKWE6CZK");
-ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const mavenPro = localFont({
   src: "../assets/fonts/maven_pro.ttf",
@@ -88,6 +86,7 @@ export default function RootLayout({
           </Provider>
         </div>
       </body>
+      <GoogleAnalytics gaId="G-Y2TKWE6CZK" />
     </html>
   );
 }
