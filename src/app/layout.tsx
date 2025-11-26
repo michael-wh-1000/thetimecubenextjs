@@ -4,6 +4,11 @@ import Header from "@/components/nonreusable/header";
 import Footer from "@/components/nonreusable/footer";
 import { Provider } from "@/lib/providers";
 import localFont from "next/font/local";
+import ReactGA from "react-ga4";
+import { Analytics } from "@vercel/analytics/react";
+
+ReactGA.initialize("G-Y2TKWE6CZK");
+ReactGA.send({ hitType: "pageview", page: window.location.pathname });
 
 const mavenPro = localFont({
   src: "../assets/fonts/maven_pro.ttf",
@@ -78,7 +83,7 @@ export default function RootLayout({
             <Header />
             {children}
             <div className="flex-1"></div>
-            {/* <Analytics /> */}
+            <Analytics />
             <Footer />
           </Provider>
         </div>
