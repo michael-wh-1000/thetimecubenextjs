@@ -1,6 +1,10 @@
 import { themes } from "./themes";
 
 export const updateFavicon = (theme: string) => {
+  if (typeof window === "undefined") {
+    return;
+  }
+
   let favicon = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
 
   if (!favicon) {
