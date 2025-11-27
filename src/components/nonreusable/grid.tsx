@@ -115,7 +115,7 @@ const CubeGrid = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
       {timeCube.totalCubes === 0 ? (
         <div className="w-full flex flex-col flex-1 justify-center items-center bg-background-muted/40 border-foreground/80 border rounded-2xl text-[16px] px-5 sm:px-[60px] md:px-20 lg:px-[100px] text-text-color/80 gap-[30px]">
           <LogoIcon className="h-16 sm:h-18 md:h-20 lg:h-22 w-auto opacity-40" />
-          <span className="text-center">
+          <span className="text-center text-[14px] sm:text-[15px] md:text-[16px]">
             Please adjust settings to generate grid
           </span>
         </div>

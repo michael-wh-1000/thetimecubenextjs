@@ -708,7 +708,7 @@ export const getGrid = (
           //     : "",
         }}
         className={`opacity-100 span relative overflow-clip ${
-          i <= coloredCubes ? "bg-foreground-muted" : "bg-foreground"
+          i <= coloredCubes ? "bg-foreground-muted" : "bg-foreground/60"
         }`}
       >
         {i === Math.ceil(coloredCubes) && (

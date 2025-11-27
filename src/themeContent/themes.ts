@@ -24,6 +24,14 @@ export const themes: Record<string, Theme> = {
     textColor: "#353535",
     accentColor: "#353535",
   },
+  "shadow blue": {
+    background: "#0B0E13",
+    backgroundMuted: "#141A24",
+    foreground: "#394760",
+    foregroundMuted: "#9FADC6",
+    textColor: "#BDC9DF",
+    accentColor: "#9FADC6",
+  },
   // "red black": {
   //   background: "#E3655B",
   //   backgroundMuted: "#E9847C",

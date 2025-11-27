@@ -81,12 +81,12 @@ export default function RootLayout({
             <Header />
             {children}
             <div className="flex-1"></div>
-            <Analytics />
+            {/* <Analytics /> */}
             <Footer />
           </Provider>
         </div>
       </body>
-      <GoogleAnalytics gaId="G-Y2TKWE6CZK" />
+      {/* <GoogleAnalytics gaId="G-Y2TKWE6CZK" /> */}
     </html>
   );
 }

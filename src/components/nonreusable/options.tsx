@@ -301,7 +301,11 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                   <span className="text-[12px] text-text-color/80 font-medium">
                     age (years)
                   </span>
-                  <Modal label={timeCube.passedYears} inputRef={inputRef3}>
+                  <Modal
+                    label={timeCube.passedYears}
+                    inputRef={inputRef3}
+                    full={true}
+                  >
                     <div className="w-full flex flex-col gap-4">
                       <span className="text-[14px]">Age(Years):</span>
                       <Input
@@ -331,7 +335,11 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                   <span className="text-[12px] text-text-color/80 font-medium">
                     lifespan (years)
                   </span>
-                  <Modal label={timeCube.totalYears} inputRef={inputRef4}>
+                  <Modal
+                    label={timeCube.totalYears}
+                    inputRef={inputRef4}
+                    full={true}
+                  >
                     <div className="w-full flex flex-col gap-4">
                       <span className="text-[14px]">Lifespan(Years):</span>
                       <Input

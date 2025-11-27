@@ -77,13 +77,13 @@ const CubePreviewCard = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
         </PopoverContent>
       </Popover>
       <div
-        className="flex flex-col flex-1 w-full items-center text-text-color gap-2.5 hover:scale-102 active:scale-98 transition-all cursor-pointer bg-background-muted p-5 rounded-2xl border border-foreground/80"
+        className="flex flex-col flex-1 w-full items-center text-text-color gap-2.5 hover:scale-102 active:scale-98 transition-all cursor-pointer bg-background-muted p-5 rounded-3xl border border-foreground/80"
         onClick={handleClick}
       >
-        <div className="w-full aspect-6/3 bg-foreground/20 border border-foreground-muted/80  rounded-lg flex items-center justify-center relative overflow-clip">
+        <div className="w-full aspect-6/3 bg-foreground/50 border-0 border-foreground-muted/40  rounded-xl flex items-center justify-center relative overflow-clip">
           <motion.div
             animate={{ width: `${percentage}%` }}
-            className="absolute bg-foreground-muted/40 h-full top-0 left-0"
+            className="absolute bg-foreground-muted/50 border-0 h-full top-0 left-0"
           ></motion.div>
           <span className="text-[70px] relative z-1">
             {percentage}
