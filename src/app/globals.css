@@ -18,6 +18,7 @@
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foregroundMuted);
   --color-text-color: var(--textColor);
+  --color-accent-color: var(--accentColor);
 }
 
 .dropdown-scrollbar::-webkit-scrollbar {

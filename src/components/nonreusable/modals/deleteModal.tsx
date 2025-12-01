@@ -4,7 +4,6 @@ import { FaPen } from "react-icons/fa6";
 import { useState } from "react";
 import { CustomButton } from "../../reusable/customButton";
 import clsx from "clsx";
-import { TimeCubeDataType } from "@/lib/providers";
 import { useDispatchContext } from "@/lib/functions";
 import {
   Dialog,
@@ -13,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { TimeCubeDataType } from "@/lib/types";
 
 export const DeleteModal = ({
   children,

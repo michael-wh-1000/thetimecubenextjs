@@ -1,7 +1,6 @@
 "use client";
 
 import { CONSTANT, getPercentage } from "@/lib/functions";
-import { TimeCubeDataType } from "@/lib/providers";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -11,6 +10,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { EditModal } from "../nonreusable/modals/editModal";
 import { DeleteModal } from "../nonreusable/modals/deleteModal";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { TimeCubeDataType } from "@/lib/types";
 
 const CubePreviewCard = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
   const [percentage, setPercentage] = useState(0);

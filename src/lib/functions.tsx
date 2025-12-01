@@ -1,21 +1,21 @@
 import {
-  Action,
+  AppearanceContext,
   DispatchContext,
   durationOptions,
   ScreenSaverContext,
   StateContext,
-  staticState,
-  TimeCubeDataType,
 } from "@/lib/providers";
 import { TimeLeftType } from "@/components/nonreusable/countdown";
 import { motion } from "motion/react";
 import { useContext } from "react";
-import { ThemeContext } from "@/lib/providers";
+import { Action, staticState, TimeCubeDataType } from "./types";
 
-export const useThemeContext = () => {
-  const context = useContext(ThemeContext);
+export const useAppearanceContext = () => {
+  const context = useContext(AppearanceContext);
   if (!context) {
-    throw new Error("useThemeContext must be used within a ContextProvider");
+    throw new Error(
+      "useAppearanceContext must be used within a ContextProvider"
+    );
   }
   return context;
 };
@@ -663,7 +663,8 @@ export const getGrid = (
   gridGap: number,
   cubeNumber: number,
   coloredCubes: number,
-  setFinalGrid: React.Dispatch<React.SetStateAction<React.ReactNode[]>>
+  setFinalGrid: React.Dispatch<React.SetStateAction<React.ReactNode[]>>,
+  outline: boolean
 ) => {
   const width = window.innerWidth;
   const gridWidth =
@@ -707,16 +708,16 @@ export const getGrid = (
           //     ? `linear-gradient(to right, ${foregroundMuted} ${percentage}%, ${foreground} ${percentage}%)`
           //     : "",
         }}
-        className={`opacity-100 span relative overflow-clip ${
+        className={`opacity-100 span relative overflow-hidden ${
           i <= coloredCubes ? "bg-foreground-muted" : "bg-foreground/60"
-        }`}
+        } ${outline && "border-[0.5px] border-foreground-muted"}`}
       >
         {i === Math.ceil(coloredCubes) && (
           <motion.div
             animate={{ width: `${percentage}%` }}
-            style={{
-              borderRadius: `${gridGap / 1.5}px 0 0 ${gridGap / 1.5}px`,
-            }}
+            // style={{
+            //   borderRadius: `${gridGap / 1.5}px 0 0 ${gridGap / 1.5}px`,
+            // }}
             className="h-full absolute top-0 left-0 w-full bg-foreground-muted"
           ></motion.div>
         )}
@@ -747,7 +748,6 @@ export const getTime = (
   end: Date,
   setTimeLeft: React.Dispatch<React.SetStateAction<TimeLeftType>>
 ) => {
-  console.log("Function running");
   const interval = setInterval(() => {
     const now = new Date();
     const difference = end.getTime() - now.getTime();

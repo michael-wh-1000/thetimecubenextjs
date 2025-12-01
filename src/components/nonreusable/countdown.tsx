@@ -1,7 +1,7 @@
 "use client";
 
 import { useScreenSaverContext } from "@/lib/functions";
-import { TimeCubeDataType } from "@/lib/providers";
+import { TimeCubeDataType } from "@/lib/types";
 import clsx from "clsx";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -54,7 +54,6 @@ const CountDown = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
     initializeTime();
 
     const interval = setInterval(() => {
-      console.log("Running");
       const now = new Date();
       const difference = timeCube.endDate.getTime() - now.getTime();
 

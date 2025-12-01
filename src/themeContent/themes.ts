@@ -8,13 +8,13 @@ export type Theme = {
 };
 
 export const themes: Record<string, Theme> = {
-  "standard dark": {
-    background: "#0e0e0e",
-    backgroundMuted: "#161616",
-    foreground: "#444444",
-    foregroundMuted: "#b6b6b6",
-    textColor: "#d9d9d9",
-    accentColor: "#d9d9d9",
+  "orange spark": {
+    background: "#FFFFFF",
+    backgroundMuted: "#ECECEC",
+    foreground: "#BEBEBE",
+    foregroundMuted: "#FD4B27",
+    textColor: "#000000",
+    accentColor: "#FD4B27",
   },
   "standard light": {
     background: "#EEEEEE",
@@ -24,6 +24,30 @@ export const themes: Record<string, Theme> = {
     textColor: "#353535",
     accentColor: "#353535",
   },
+  frost: {
+    background: "#DAE0F5",
+    backgroundMuted: "#C1C7DF",
+    foreground: "#92A4BE",
+    foregroundMuted: "#5A748A",
+    textColor: "#485D71",
+    accentColor: "#506477",
+  },
+  cappuccino: {
+    background: "#D8D2C3",
+    backgroundMuted: "#CDC0AF",
+    foreground: "#8B6F5C",
+    foregroundMuted: "#5D4737",
+    textColor: "#393B3B",
+    accentColor: "#513A2A",
+  },
+  verdant: {
+    background: "#1F201B",
+    backgroundMuted: "#272822",
+    foreground: "#E0D88A",
+    foregroundMuted: "#8DC027",
+    textColor: "#E2E2DC",
+    accentColor: "#8DC027",
+  },
   "shadow blue": {
     background: "#0B0E13",
     backgroundMuted: "#141A24",
@@ -31,6 +55,14 @@ export const themes: Record<string, Theme> = {
     foregroundMuted: "#9FADC6",
     textColor: "#BDC9DF",
     accentColor: "#9FADC6",
+  },
+  "standard dark": {
+    background: "#0e0e0e",
+    backgroundMuted: "#161616",
+    foreground: "#444444",
+    foregroundMuted: "#b6b6b6",
+    textColor: "#d9d9d9",
+    accentColor: "#d9d9d9",
   },
   // "red black": {
   //   background: "#E3655B",

@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { useThemeContext } from "@/lib/functions";
 import { themes } from "./themes";
 import { updateFavicon } from "./favicontheme";
+import { useAppearanceContext } from "@/lib/functions";
 
 const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
-  const { theme } = useThemeContext();
+  const { appearance } = useAppearanceContext();
+  const theme = appearance.theme;
 
   useEffect(() => {
     const colors = themes[theme];

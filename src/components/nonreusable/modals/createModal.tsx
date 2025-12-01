@@ -4,7 +4,7 @@ import { FaPen } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 import { CustomButton } from "../../reusable/customButton";
 import clsx from "clsx";
-import { initialTimeCube, TimeCubeDataType } from "@/lib/providers";
+import { initialTimeCube } from "@/lib/providers";
 import { Input } from "../../ui/input";
 import { useDispatchContext, useStateContext } from "@/lib/functions";
 import { nanoid } from "nanoid";
@@ -16,6 +16,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { TimeCubeDataType } from "@/lib/types";
 
 export const CreateModal = ({
   children,

@@ -1,10 +1,8 @@
 "use client";
 
 import { FaPen } from "react-icons/fa6";
-import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { CustomButton } from "../../reusable/customButton";
-import { TimeCubeDataType } from "@/lib/providers";
 import { Input } from "../../ui/input";
 import { useDispatchContext } from "@/lib/functions";
 import {
@@ -15,6 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import clsx from "clsx";
+import { TimeCubeDataType } from "@/lib/types";
 
 export const EditModal = ({
   children,

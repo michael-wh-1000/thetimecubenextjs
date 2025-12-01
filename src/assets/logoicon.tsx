@@ -1,10 +1,11 @@
 "use client";
 
-import { useThemeContext } from "@/lib/functions";
+import { useAppearanceContext } from "@/lib/functions";
 import { themes } from "@/themeContent/themes";
 
 const LogoIcon = ({ className }: { className: string }) => {
-  const { theme } = useThemeContext();
+  const { appearance } = useAppearanceContext();
+  const theme = appearance.theme;
   const colors = themes[theme];
 
   return (

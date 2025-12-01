@@ -1,7 +1,7 @@
 "use client";
 
 import LogoIcon from "@/assets/logoicon";
-import { TbPaintFilled } from "react-icons/tb";
+import { IoExtensionPuzzle } from "react-icons/io5";
 import { useScreenSaverContext } from "@/lib/functions";
 import clsx from "clsx";
 import { FaEye } from "react-icons/fa";
@@ -41,17 +41,20 @@ const Header = () => {
             className={clsx(
               "hover:text-text-color transition-transform hover:scale-105",
               screenSaver ? "opacity-0" : "opacity-100",
-              pathname === "/themes"
+              pathname === "/appearance"
                 ? "text-text-color"
-                : "text-foreground-muted"
+                : "text-text-color/80"
             )}
           >
             <Link
-              href={"/themes"}
-              className="flex gap-1 items-center text-[12px] sm:text-[14px] md:text-[16px] themeDriver"
+              href={"/appearance"}
+              className="text-[12px] sm:text-[14px] md:text-[16px] themeDriver"
               prefetch={true}
             >
-              <TbPaintFilled /> themes
+              <div className="flex gap-1 items-center">
+                <IoExtensionPuzzle />
+                <span>appearance</span>
+              </div>
             </Link>
           </button>
           {pathname === "/cube" && (

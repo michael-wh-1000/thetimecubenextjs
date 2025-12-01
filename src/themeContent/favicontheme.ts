@@ -5,6 +5,15 @@ export const updateFavicon = (theme: string) => {
     return;
   }
 
+  // const existingIcons = document.querySelectorAll(
+  //   'link[rel="icon"], link[rel="shortcut icon"]'
+  // );
+  // existingIcons.forEach((icon) => {
+  //   if (icon.parentNode) {
+  //     icon.parentNode.removeChild(icon);
+  //   }
+  // });
+
   let favicon = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
 
   if (!favicon) {

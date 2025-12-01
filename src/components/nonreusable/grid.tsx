@@ -6,10 +6,11 @@ import {
   generate,
   getGrid,
   getSize,
+  useAppearanceContext,
   useDispatchContext,
   useStateContext,
 } from "@/lib/functions";
-import { TimeCubeDataType } from "@/lib/providers";
+import { TimeCubeDataType } from "@/lib/types";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { ViewportList } from "react-viewport-list";
@@ -21,6 +22,8 @@ const CubeGrid = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [finalGrid, setFinalGrid] = useState<React.ReactNode[]>([]);
   const [filledCubes, setFilledCubes] = useState(0);
+  const { appearance } = useAppearanceContext();
+  const outline = appearance.outline;
 
   const generateCubeGrid = () => {
     const { totalCubes, filledCubes } = generate(
@@ -34,7 +37,7 @@ const CubeGrid = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
   const updateCubeSize = (totalCubes: number, filledCubes: number) => {
     const { size: newSize, gap: newGap } = getSize(timeCube.totalCubes);
 
-    getGrid(newSize, newGap, totalCubes, filledCubes, setFinalGrid);
+    getGrid(newSize, newGap, totalCubes, filledCubes, setFinalGrid, outline);
     dispatch({
       type: "UPDATE",
       payload: { id: timeCube.id, cubeSize: newSize },
@@ -68,12 +71,20 @@ const CubeGrid = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
     timeCube.initialCustomDate,
     timeCube.endCustomDate,
     timeCube.format,
+    outline,
   ]);
 
   useEffect(() => {
     const { size: newSize, gap: newGap } = getSize(timeCube.totalCubes);
 
-    getGrid(newSize, newGap, timeCube.totalCubes, filledCubes, setFinalGrid);
+    getGrid(
+      newSize,
+      newGap,
+      timeCube.totalCubes,
+      filledCubes,
+      setFinalGrid,
+      outline
+    );
 
     const percentageFunction = () => {
       const now = new Date();
@@ -108,7 +119,7 @@ const CubeGrid = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
       clearInterval(cubeInterval);
       window.removeEventListener("resize", handleResize);
     };
-  }, [filledCubes]);
+  }, [filledCubes, outline]);
 
   return (
     <>

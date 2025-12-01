@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
-import { Action, TimeCubeDataType } from "@/lib/providers";
 import { CustomButton } from "./customButton";
 import { Input } from "../ui/input";
+import { Action, TimeCubeDataType } from "@/lib/types";
 
 export default function DatePicker({
   date,
@@ -48,6 +48,10 @@ export default function DatePicker({
   };
 
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.trim() === "") {
+      return;
+    }
+
     setTime(e.target.value);
     const [hours, minutes, seconds] = e.target.value.split(":").map(Number);
 

@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  durationOptions,
-  formatTypes,
-  TimeCubeDataType,
-} from "@/lib/providers";
+import { durationOptions, formatTypes } from "@/lib/providers";
 import { Modal } from "../reusable/modal";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 import {
@@ -19,9 +15,7 @@ import DatePicker from "../reusable/datepicker";
 import { Input } from "../ui/input";
 import { useRef } from "react";
 import React from "react";
-import { CustomButton } from "../reusable/customButton";
-import { IoChevronBackOutline } from "react-icons/io5";
-import { useRouter } from "next/navigation";
+import { TimeCubeDataType } from "@/lib/types";
 
 const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
   const dispatch = useDispatchContext();
@@ -41,6 +35,7 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                 type="single"
                 defaultValue={timeCube.cubeDuration.toString()}
                 onValueChange={(val) => {
+                  if (!val) return;
                   if (val) {
                     // dispatch({
                     //   type: "SET_FIELD",
@@ -58,6 +53,13 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                 {durationOptions.map((durationOption) => (
                   <ToggleGroupItem
                     value={durationOption.value.toString()}
+                    onClick={(e) => {
+                      if (
+                        timeCube.cubeDuration.toString() ===
+                        durationOption.value.toString()
+                      )
+                        e.preventDefault();
+                    }}
                     className={clsx(
                       "data-[state=on]:bg-foreground/60 data-[state=on]:text-text-color",
                       "w-full py-2 hover:bg-foreground/20 hover:text-inherit"
@@ -80,6 +82,7 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                 type="single"
                 defaultValue={timeCube.format}
                 onValueChange={(val) => {
+                  if (!val) return;
                   if (val) {
                     // dispatch({
                     //   type: "SET_FIELD",
@@ -98,6 +101,9 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                   <ToggleGroupItem
                     value={formatType}
                     key={formatType}
+                    onClick={(e) => {
+                      if (timeCube.format === formatType) e.preventDefault();
+                    }}
                     className={clsx(
                       "data-[state=on]:bg-foreground/60 data-[state=on]:text-text-color",
                       "w-full py-2 hover:bg-foreground/20 hover:text-inherit"
@@ -228,6 +234,8 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                   type="single"
                   defaultValue={timeCube.cubeDuration.toString()}
                   onValueChange={(val) => {
+                    if (!val) return;
+
                     if (val) {
                       dispatch({
                         type: "UPDATE",
@@ -240,6 +248,13 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                   {durationOptions.map((durationOption) => (
                     <ToggleGroupItem
                       value={durationOption.value.toString()}
+                      onClick={(e) => {
+                        if (
+                          timeCube.cubeDuration.toString() ===
+                          durationOption.value.toString()
+                        )
+                          e.preventDefault();
+                      }}
                       className={clsx(
                         "data-[state=on]:bg-foreground/60 data-[state=on]:text-text-color",
                         "w-full py-2 hover:bg-foreground/20 hover:text-inherit"
@@ -266,6 +281,8 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                   type="single"
                   defaultValue={timeCube.format}
                   onValueChange={(val) => {
+                    if (!val) return;
+
                     if (val) {
                       // dispatch({
                       //   type: "SET_FIELD",
@@ -284,6 +301,9 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                     <ToggleGroupItem
                       value={formatType}
                       key={formatType}
+                      onClick={(e) => {
+                        if (timeCube.format === formatType) e.preventDefault();
+                      }}
                       className={clsx(
                         "data-[state=on]:bg-foreground/60 data-[state=on]:text-text-color",
                         "w-full py-2 hover:bg-foreground/20 hover:text-inherit"

@@ -26,8 +26,8 @@ const DashboardPage = () => {
       {
         element: ".themeDriver",
         popover: {
-          title: "Themes",
-          description: "Click here to change themes",
+          title: "Appearance",
+          description: "Click here to change the appearance of the site",
         },
       },
       {

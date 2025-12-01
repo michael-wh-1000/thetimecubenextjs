@@ -24,7 +24,6 @@ function CubePage() {
   const { screenSaver } = useScreenSaverContext();
   const state = useStateContext();
   const timeCube = state.find((item) => item.id == id)!;
-  console.log(timeCube.cubeDuration);
 
   const driverObj2 = driver({
     popoverClass: "driverjs-theme",

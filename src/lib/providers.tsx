@@ -12,18 +12,23 @@ import { themes } from "../themeContent/themes";
 import { updateFavicon } from "../themeContent/favicontheme";
 import { nanoid } from "nanoid";
 import ThemeWrapper from "@/themeContent/themewrapper";
-
-export type ScreenSaverContextType = {
-  screenSaver: boolean;
-  setScreenSaver: React.Dispatch<React.SetStateAction<boolean>>;
-};
+import {
+  Action,
+  AppearanceType,
+  ScreenSaverContextType,
+  staticState,
+  TimeCubeDataType,
+} from "./types";
 
 export const ScreenSaverContext = createContext<ScreenSaverContextType | null>(
   null
 );
 
-export const ThemeContext = createContext<
-  | { theme: string; setTheme: React.Dispatch<React.SetStateAction<string>> }
+export const AppearanceContext = createContext<
+  | {
+      appearance: AppearanceType;
+      setAppearance: Dispatch<SetStateAction<AppearanceType>>;
+    }
   | undefined
 >(undefined);
 
@@ -65,24 +70,6 @@ export const durationOptions = [
 ];
 
 export const formatTypes = ["day", "week", "month", "year", "life", "custom"];
-
-export type TimeCubeDataType = {
-  id: string;
-  name: string;
-  format: string;
-  cubeSize: number;
-  passedYears: number;
-  totalYears: number;
-  endDate: Date;
-  initialDate: Date;
-  cubeDuration: number;
-  initialCustomDate: Date;
-  endCustomDate: Date;
-  error: Boolean;
-  totalCubes: number;
-};
-
-export type staticState = TimeCubeDataType[];
 
 const initializer = (
   initialValue: staticState,
@@ -137,16 +124,6 @@ export const initialTimeCube: TimeCubeDataType = {
   totalCubes: 0,
 };
 
-export type Action =
-  | { type: "INITIALIZE"; payload: staticState }
-  | { type: "ADD"; payload: TimeCubeDataType }
-  | { type: "DELETE"; payload: TimeCubeDataType }
-  | {
-      type: "UPDATE";
-      payload: { id: string } & Partial<Omit<TimeCubeDataType, "id">>;
-    }
-  | { type: "RESET"; payload: staticState };
-
 function reducer(state: staticState, action: Action): staticState {
   switch (action.type) {
     case "INITIALIZE":
@@ -166,22 +143,46 @@ function reducer(state: staticState, action: Action): staticState {
   }
 }
 
-const steps = [
-  {
-    selector: ".createModal",
-    content: "This is my first Step",
-  },
-];
-
 export const Provider = ({ children }: { children: React.ReactNode }) => {
   const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState("standard dark");
+  // const [theme, setTheme] = useState("standard dark");
+  const [appearance, setAppearance] = useState<AppearanceType>(() => {
+    if (typeof window === "undefined") {
+      return {
+        theme: "standard dark",
+        outline: false,
+      };
+    }
+
+    try {
+      const savedAppearance = localStorage.getItem("appearance");
+
+      if (savedAppearance) {
+        const parsedAppearance: AppearanceType = JSON.parse(savedAppearance);
+        const savedTheme = parsedAppearance.theme;
+
+        if (themes[savedTheme]) {
+          updateFavicon(savedTheme);
+          return parsedAppearance;
+        }
+      }
+    } catch (error) {
+      console.error("Failed to load appearance from localStorage", error);
+    }
+
+    return {
+      theme: "standard dark",
+      outline: false,
+    };
+  });
   const [screenSaver, setScreenSaver] = useState(false);
 
   const [state, dispatch] = useReducer(reducer, initialStaticState);
 
   useEffect(() => {
     if (typeof document === "undefined") return;
+
+    if (!mounted) return;
 
     const existingIcons = document.querySelectorAll(
       'link[rel="icon"], link[rel="shortcut icon"]'
@@ -191,31 +192,27 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
         icon.parentNode.removeChild(icon);
       }
     });
-
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      if (themes[savedTheme]) {
-        setTheme(savedTheme);
-        updateFavicon(savedTheme);
-      }
-    }
-  }, []);
+  }, [mounted]);
 
   useEffect(() => {
     const savedCubeData = initializer(initialStaticState, setMounted);
     dispatch({ type: "INITIALIZE", payload: savedCubeData });
-    console.log(savedCubeData);
   }, []);
 
   useEffect(() => {
     localStorage.setItem("cubeSettings", JSON.stringify(state));
   }, [state]);
 
+  useEffect(() => {
+    localStorage.setItem("appearance", JSON.stringify(appearance));
+  }, [appearance]);
+
   if (!mounted) {
     return null;
   }
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <AppearanceContext.Provider value={{ appearance, setAppearance }}>
       <ThemeWrapper>
         <ScreenSaverContext.Provider value={{ screenSaver, setScreenSaver }}>
           <StateContext.Provider value={state}>
@@ -225,6 +222,6 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
           </StateContext.Provider>
         </ScreenSaverContext.Provider>
       </ThemeWrapper>
-    </ThemeContext.Provider>
+    </AppearanceContext.Provider>
   );
 };
