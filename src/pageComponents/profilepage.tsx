@@ -14,6 +14,7 @@ import clsx from "clsx";
 import { DeleteModal } from "@/components/nonreusable/modals/deleteModal";
 import { toastErrorStyles, toastSuccessStyles } from "@/themeContent/themes";
 import { userNameSchema } from "@/lib/types";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ProfilePage = () => {
   const router = useRouter();
@@ -21,6 +22,7 @@ const ProfilePage = () => {
   const [draft, setDraft] = useState(session?.user.name);
   const [isEditing, setIsEditing] = useState(false);
   const nameInputRef = useRef<HTMLInputElement>(null);
+  const queryClient = useQueryClient();
 
   const startEditing = () => {
     setDraft(session?.user.name);
@@ -142,6 +144,7 @@ const ProfilePage = () => {
                 await authClient.signOut({
                   fetchOptions: {
                     onSuccess: () => {
+                      queryClient.invalidateQueries({ queryKey: ["session"] });
                       router.push("/app");
                       router.refresh();
                     },

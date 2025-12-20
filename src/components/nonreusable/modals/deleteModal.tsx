@@ -19,6 +19,7 @@ import { SessionContext } from "@/lib/providers";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { toastErrorStyles, toastSuccessStyles } from "@/themeContent/themes";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const DeleteModal = ({
   children,
@@ -45,6 +46,7 @@ export const DeleteModal = ({
   const dispatch = useDispatchContext();
   const session = useContext(SessionContext);
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const deleteTimeCube = async () => {
     if (timeCube) {
@@ -78,6 +80,7 @@ export const DeleteModal = ({
       callbackURL: "/app",
       fetchOptions: {
         onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["session"] });
           router.push("/app");
           router.refresh();
           toast.success("Account deleted", {
