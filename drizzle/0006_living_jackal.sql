@@ -1,0 +1,1 @@
+CREATE INDEX "timeCubes_userId_idx" ON "time_cubes" USING btree ("user_id");

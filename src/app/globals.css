@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* :root {
+  --background: #0f0f0f;
+  --backgroundMuted: #151515;
+  --foreground: #444444;
+  --foregroundMuted: #b6b6b6;
+  --textColor: #d9d9d9;
+} */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-muted: var(--backgroundMuted);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foregroundMuted);
+  --color-text-color: var(--textColor);
+  --color-accent-color: var(--accentColor);
+  --color-background-static: #0e0e0e;
+  --color-background-muted-static: #161616;
+  --color-foreground-static: #444444;
+  --color-foreground-muted-static: #b6b6b6;
+  --color-text-color-static: #d9d9d9;
+  --color-accent-color-static: #d9d9d9;
+  --font-InstrumentSans: var(--font-instrumentSans);
+  --shadow-custom: 0 0 50px 50px var(--color-text-color);
+  --breakpoint-xs: 450px;
+}
+
+.dropdown-scrollbar::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+.dropdown-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+  border: 0.02em solid var(--background-muted);
+  border-radius: 100vw;
+  transition: all;
+}
+
+::-webkit-scrollbar {
+  width: 0.4em;
+  background: var(--background);
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 100vw;
+  margin-block: 0.4em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+  border: 0.02em solid var(--background);
+  border-radius: 100vw;
+  transition: all;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foregroundMuted);
+}
+
+body.scroll-special::-webkit-scrollbar {
+  background: #0e0e0e;
+}
+
+body.scroll-special::-webkit-scrollbar-thumb {
+  background: #444444;
+  border: 0.02em solid #0e0e0e;
+}
+
+body.scroll-special::-webkit-scrollbar-thumb:hover {
+  background: #b6b6b6;
+}
+
+/* .transition-scope * {
+  transition: color 0.2s ease, background-color 0.2s ease, borderColor 0.2s ease;
+} */
+
+body {
+  font-family: var(--font-robotoMono), monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background-color: var(--background);
+}
+
+.marketing-body {
+  background-color: #0e0e0e;
+}
+
+.rdp-vhidden {
+  @apply hidden;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-on-load {
+  animation: fadeInScale 0.4s ease-out forwards;
+}
+
+.heading-font {
+  font-family: var(--font-mavenPro), sans-serif;
+}
+
+.word-break {
+  word-break: break-word;
+}
+
+.driver-popover.driverjs-theme {
+  background-color: var(--background);
+  color: var(--textColor);
+  font-family: var(--font-robotoMono), monospace;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--foreground);
+  box-shadow: none;
+}
+
+.driver-popover.driverjs-theme .driver-popover-title {
+  font-family: var(--font-mavenPro), sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.driver-popover.driverjs-theme .driver-popover-description,
+.driver-popover.driverjs-theme .driver-popover-progress-text {
+  font-family: var(--font-robotoMono), monospace;
+  font-size: 14px;
+}
+
+.driver-popover.driverjs-theme button {
+  flex: 1;
+  text-align: center;
+  background-color: var(--backgroundMuted);
+  color: var(--textColor);
+  border: 1px solid var(--foreground);
+  font-family: var(--font-robotoMono), monospace;
+  text-shadow: none;
+  font-size: 14px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  transition: all 0.1s ease-in-out;
+}
+
+.driver-popover.driverjs-theme button:hover {
+  background-color: var(--foregroundMuted);
+  color: var(--background);
+  border: 1px solid var(--foregroundMuted);
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn {
+  background-color: transparent;
+  border: none;
+  transform: scale(1.2);
+}
+.driver-popover.driverjs-theme .driver-popover-close-btn:hover {
+  background-color: transparent;
+  border: none;
+  color: var(--textColor);
+  scale: 1.4;
+}
+
+.driver-popover.driverjs-theme .driver-popover-navigation-btns {
+  justify-content: space-between;
+  gap: 3px;
+}
+
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-left.driver-popover-arrow {
+  border-left-color: var(--foreground);
+}
+
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-right.driver-popover-arrow {
+  border-right-color: var(--foreground);
+}
+
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-top.driver-popover-arrow {
+  border-top-color: var(--foreground);
+}
+
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-bottom.driver-popover-arrow {
+  border-bottom-color: var(--foreground);
+}
+
+@media (width >= 40rem) {
+  .driver-popover.driverjs-theme .driver-popover-description,
+  .driver-popover.driverjs-theme .driver-popover-progress-text {
+    font-size: 15px;
+  }
+  .driver-popover.driverjs-theme .driver-popover-title {
+    font-size: 22px;
+  }
+}
+
+@media (width >= 48rem) {
+  .driver-popover.driverjs-theme .driver-popover-description,
+  .driver-popover.driverjs-theme .driver-popover-progress-text {
+    font-size: 16px;
+  }
+  .driver-popover.driverjs-theme .driver-popover-title {
+    font-size: 24px;
+  }
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.truncate-custom {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
