@@ -87,12 +87,12 @@ export default async function RootLayout({
             <Header />
             {children}
             <div className="flex-1"></div>
-            {/* <Analytics /> */}
+            <Analytics />
+            <GoogleAnalytics gaId="G-Y2TKWE6CZK" />
             <Footer />
           </div>
         </QueryProvider>
       </body>
-      {/* <GoogleAnalytics gaId="G-Y2TKWE6CZK" /> */}
     </html>
   );
 }
