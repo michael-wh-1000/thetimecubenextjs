@@ -13,6 +13,7 @@ import { toastErrorStyles } from "@/themeContent/themes";
 import { useQueryClient } from "@tanstack/react-query";
 import Spinner from "../reusable/spinner";
 import { useState } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export const SignIn = () => {
   const pathname = usePathname();
@@ -27,7 +28,7 @@ export const SignIn = () => {
         <CustomButton
           type="accent"
           className={clsx(
-            "w-fit text-[11px] px-3 sm:px-4",
+            "w-fit px-3 sm:px-4",
             !pathname.startsWith("/app") &&
               "text-background-static bg-foreground-muted-static border-foreground-muted-static"
           )}
@@ -58,6 +59,7 @@ export const SignIn = () => {
               fetchOptions: {
                 onSuccess: () => {
                   queryClient.invalidateQueries({ queryKey: ["session"] });
+                  sendGAEvent({ event: "sign_in" });
                   router.refresh();
                 },
                 onError: () => {

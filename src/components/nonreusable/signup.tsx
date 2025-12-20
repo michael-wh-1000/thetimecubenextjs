@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { toastErrorStyles } from "@/themeContent/themes";
 import { useQueryClient } from "@tanstack/react-query";
 import Spinner from "../reusable/spinner";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export const SignUp = () => {
   const router = useRouter();
@@ -46,6 +47,7 @@ export const SignUp = () => {
               fetchOptions: {
                 onSuccess: () => {
                   queryClient.invalidateQueries({ queryKey: ["session"] });
+                  sendGAEvent({ event: "sign_in" });
                   router.refresh();
                 },
                 onError: () => {

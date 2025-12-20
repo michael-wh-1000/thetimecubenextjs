@@ -193,7 +193,7 @@ const HomePage = () => {
               <ScrollButton />
             </div>
             <img
-              src={"/images/mockup.png"}
+              src={"/images/mockup.webp"}
               className="w-full sm:w-[40%] lg:w-1/2 max-w-[200px]"
             />
           </div>

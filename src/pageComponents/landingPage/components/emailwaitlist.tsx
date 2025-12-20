@@ -7,6 +7,7 @@ import { emailSchema } from "@/lib/types";
 import { toastErrorStyles, toastSuccessStyles } from "@/themeContent/themes";
 import { useState } from "react";
 import { toast } from "sonner";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export const EmailWaitlist = () => {
   const [email, setEmail] = useState("");
@@ -27,6 +28,7 @@ export const EmailWaitlist = () => {
         toast.success("Added to waitlist", {
           style: toastSuccessStyles,
         });
+        sendGAEvent({ event: "waitlist_success" });
       }
     }
   };

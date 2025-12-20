@@ -44,9 +44,10 @@ const ProfilePage = () => {
         const result = await authClient.updateUser({
           name: draft.trim(),
         });
+        queryClient.invalidateQueries({ queryKey: ["session"] });
 
         if (result.error) {
-          toast.error("Failed to update username", {
+          toast.error("Network error, change not saved.", {
             style: toastErrorStyles,
           });
         } else {
