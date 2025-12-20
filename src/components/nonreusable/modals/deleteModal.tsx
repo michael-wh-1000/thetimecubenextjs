@@ -20,6 +20,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { toastErrorStyles, toastSuccessStyles } from "@/themeContent/themes";
 import { useQueryClient } from "@tanstack/react-query";
+import Spinner from "@/components/reusable/spinner";
 
 export const DeleteModal = ({
   children,
@@ -47,6 +48,7 @@ export const DeleteModal = ({
   const session = useContext(SessionContext);
   const router = useRouter();
   const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
 
   const deleteTimeCube = async () => {
     if (timeCube) {
@@ -76,6 +78,7 @@ export const DeleteModal = ({
   };
 
   const deleteUser = async () => {
+    setLoading(true);
     await authClient.deleteUser({
       callbackURL: "/app",
       fetchOptions: {
@@ -162,6 +165,7 @@ export const DeleteModal = ({
                 }
                 className="w-fit"
               >
+                {loading && <Spinner />}
                 Confirm
               </CustomButton>
             </div>

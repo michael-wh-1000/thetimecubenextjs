@@ -15,6 +15,7 @@ import { DeleteModal } from "@/components/nonreusable/modals/deleteModal";
 import { toastErrorStyles, toastSuccessStyles } from "@/themeContent/themes";
 import { userNameSchema } from "@/lib/types";
 import { useQueryClient } from "@tanstack/react-query";
+import Spinner from "@/components/reusable/spinner";
 
 const ProfilePage = () => {
   const router = useRouter();
@@ -23,6 +24,7 @@ const ProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const nameInputRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
 
   const startEditing = () => {
     setDraft(session?.user.name);
@@ -141,6 +143,7 @@ const ProfilePage = () => {
               )}
               onClick={async (e) => {
                 e.preventDefault();
+                setLoading(true);
                 await authClient.signOut({
                   fetchOptions: {
                     onSuccess: () => {
@@ -152,6 +155,7 @@ const ProfilePage = () => {
                 });
               }}
             >
+              {loading && <Spinner />}
               Sign Out
             </CustomButton>
           </div>

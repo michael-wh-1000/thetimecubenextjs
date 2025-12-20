@@ -151,7 +151,15 @@ export const EditModal = ({
                 type="text"
                 value={newCubeName}
                 placeholder="Enter name"
-                onChange={(e) => setNewCubeName(e.target.value)}
+                onChange={(e) => {
+                  setNewCubeName(e.target.value);
+                  const result = cubeNameSchema.safeParse(
+                    e.target.value.trim()
+                  );
+                  if (result.success) {
+                    setError(null);
+                  }
+                }}
                 onKeyDown={handleKeyDown}
                 className="p-4 sm:p-5 border-foreground border rounded-md w-full text-[14px] sm:text-[15px] md:text-[16px] bg-background-muted"
               />

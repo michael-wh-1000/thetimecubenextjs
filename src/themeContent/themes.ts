@@ -292,12 +292,14 @@ export const themes: Record<string, Theme> = {
 
 export const toastErrorStyles = {
   background: "#ba181b",
-  borderColor: "#e5383b",
+  borderColor: "#ba181b",
   color: "white",
+  borderRadius: "8px",
 };
 
 export const toastSuccessStyles = {
   background: "#208b3a",
-  borderColor: "#2dc653",
+  borderColor: "#208b3a",
   color: "white",
+  borderRadius: "8px",
 };

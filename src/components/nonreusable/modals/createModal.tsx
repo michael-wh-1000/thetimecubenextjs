@@ -142,11 +142,19 @@ export const CreateModal = ({
                   type="text"
                   value={newCubeName}
                   placeholder="Enter time cube name"
-                  onChange={(e) => setNewCubeName(e.target.value)}
+                  onChange={(e) => {
+                    setNewCubeName(e.target.value);
+                    const result = cubeNameSchema.safeParse(
+                      e.target.value.trim()
+                    );
+                    if (result.success) {
+                      setError(null);
+                    }
+                  }}
                   onKeyDown={handleKeyDown}
                   className="p-4 sm:p-5 border-foreground border rounded-md w-full text-[14px] sm:text-[15px] md:text-[16px] bg-background-muted"
                 />
-                {error && <p className="text-red-500 text-sm">{error}</p>}
+                {error && <p className="text-red-400 text-sm">{error}</p>}
                 <p className="text-sm w-full text-left pt-2 text-text-color/60">
                   Note: Default format is day. You can change it in settings
                 </p>

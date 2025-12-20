@@ -7,19 +7,26 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { toastErrorStyles } from "@/themeContent/themes";
 import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import Spinner from "../reusable/spinner";
 
-export const SignOut = () => {
+export const SignOut = ({ className }: { className?: string }) => {
   const router = useRouter();
   const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
 
   return (
     <CustomButton
       type="accent"
       className={clsx(
-        "w-full text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] px-3 sm:px-4 justify-center"
+        "w-full px-3 sm:px-4 justify-center",
+        className
+          ? className
+          : "text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px]"
       )}
       onClick={async (e) => {
         e.preventDefault();
+        setLoading(true);
         await authClient.signOut({
           fetchOptions: {
             onSuccess: () => {
@@ -36,6 +43,7 @@ export const SignOut = () => {
         });
       }}
     >
+      {loading && <Spinner />}
       Sign Out
     </CustomButton>
   );

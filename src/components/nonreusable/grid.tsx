@@ -9,7 +9,6 @@ import {
   updateCubeClient,
   useAppearanceContext,
   useDispatchContext,
-  useStateContext,
 } from "@/lib/functions";
 import { SessionContext } from "@/lib/providers";
 import { TimeCubeDataType } from "@/lib/types";

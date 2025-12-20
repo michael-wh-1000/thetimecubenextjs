@@ -141,11 +141,11 @@ const AppHeader = () => {
                 </PopoverTrigger>
                 <PopoverContent
                   align="end"
-                  className="w-auto border-foreground bg-background p-4 text-text-color rounded-lg flex flex-col gap-3"
+                  className="w-auto border-foreground bg-background p-4 text-text-color rounded-xl flex flex-col gap-3"
                 >
                   <CustomButton
                     type="standard"
-                    className="text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px]"
+                    className="text-[14px]"
                     onClick={() => {
                       router.push("/app/profile");
                       setOpen(false);
@@ -153,7 +153,7 @@ const AppHeader = () => {
                   >
                     View Profile
                   </CustomButton>
-                  <SignOut />
+                  <SignOut className="text-[14px]" />
                 </PopoverContent>
               </Popover>
             )

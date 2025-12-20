@@ -25,6 +25,15 @@ const Footer = () => {
               Home
             </button>
           </Link>
+          <Link href={"/app"} prefetch={true}>
+            <button
+              className={clsx(
+                "cursor-pointer flex items-center gap-2 text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] transition-all hover:scale-105"
+              )}
+            >
+              App
+            </button>
+          </Link>
           <Link href={"/about"} prefetch={true}>
             <button
               className={clsx(

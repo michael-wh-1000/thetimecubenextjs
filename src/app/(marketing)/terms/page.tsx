@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function TermsOfService() {
   return (
     <main className="py-20 sm:py-[100px] flex flex-col gap-5 sm:gap-[25px] md:gap-[30px] lg:gap-[35px] px-5 sm:px-[100px] bg-background text-text-color-static max-w-[2000px] animate-on-load">
-      <div className="max-w-4xl mx-auto p-6 space-y-8 text-text-color-static/80">
+      <div className="max-w-4xl mx-auto space-y-8 text-text-color-static/80">
         <h1 className="text-4xl font-extrabold font-InstrumentSans text-text-color-static">
           Terms of Service
         </h1>
