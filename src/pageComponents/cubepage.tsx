@@ -12,7 +12,7 @@ import {
 import { SessionContext } from "@/lib/providers";
 import clsx from "clsx";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import { CustomButton } from "@/components/reusable/customButton";
@@ -40,52 +40,56 @@ function CubePage() {
     }
   }, [timeCube]);
 
-  const driverObj2 = driver({
-    popoverClass: "driverjs-theme",
-    showProgress: false,
-    steps: [
-      {
-        element: ".settingsDriver",
-        popover: {
-          title: "Settings",
-          description:
-            "These are the settings for your timer. You can change the format of what is being timed and even choose custom durations to track",
-        },
-      },
-      {
-        element: ".countdownDriver",
-        popover: {
-          title: "Countdown",
-          description:
-            "This is a countdown of your time left. It counts down to zero",
-        },
-      },
-      {
-        element: ".gridDriver",
-        popover: {
-          title: "Grid",
-          description:
-            "This is a grid with cubes that fill up as your time left decreases. You can change the duration each cube represents in the settings",
-        },
-      },
-      {
-        element: ".focusDriver",
-        popover: {
-          title: "Focus Mode",
-          description:
-            "This hides all settings and controls for a minimal appearance",
-        },
-      },
-      {
-        element: ".replayDriver",
-        popover: {
-          title: "Tutorial Replay",
-          description:
-            "Click this button to replay the tutorial if you need to",
-        },
-      },
-    ],
-  });
+  const driverObj2 = useMemo(
+    () =>
+      driver({
+        popoverClass: "driverjs-theme",
+        showProgress: false,
+        steps: [
+          {
+            element: ".settingsDriver",
+            popover: {
+              title: "Settings",
+              description:
+                "These are the settings for your timer. You can change the format of what is being timed and even choose custom durations to track",
+            },
+          },
+          {
+            element: ".countdownDriver",
+            popover: {
+              title: "Countdown",
+              description:
+                "This is a countdown of your time left. It counts down to zero",
+            },
+          },
+          {
+            element: ".gridDriver",
+            popover: {
+              title: "Grid",
+              description:
+                "This is a grid with cubes that fill up as your time left decreases. You can change the duration each cube represents in the settings",
+            },
+          },
+          {
+            element: ".focusDriver",
+            popover: {
+              title: "Focus Mode",
+              description:
+                "This hides all settings and controls for a minimal appearance",
+            },
+          },
+          {
+            element: ".replayDriver",
+            popover: {
+              title: "Tutorial Replay",
+              description:
+                "Click this button to replay the tutorial if you need to",
+            },
+          },
+        ],
+      }),
+    []
+  );
 
   const updateCubeTutorial = async () => {
     if (session) {

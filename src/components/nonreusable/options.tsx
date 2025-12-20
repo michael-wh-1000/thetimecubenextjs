@@ -274,6 +274,7 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                     label={Math.round(timeCube.passedYears * 100) / 100}
                     timeCube={timeCube}
                     property="passedYears"
+                    full={true}
                   >
                     <span className="text-[14px]">Age(Years):</span>
                   </LifeModal>
@@ -286,6 +287,7 @@ const Options = ({ timeCube }: { timeCube: TimeCubeDataType }) => {
                     label={Math.round(timeCube.totalYears * 100) / 100}
                     timeCube={timeCube}
                     property="totalYears"
+                    full={true}
                   >
                     <span className="text-[14px]">Lifespan(Years):</span>
                   </LifeModal>

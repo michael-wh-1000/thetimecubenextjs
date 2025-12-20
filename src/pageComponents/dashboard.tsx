@@ -5,7 +5,7 @@ import CubePreviewCard from "../components/reusable/cubePreviewCard";
 import { CreateModal } from "@/components/nonreusable/modals/createModal";
 import { useAppearanceContext, useStateContext } from "@/lib/functions";
 import LogoIcon from "@/assets/logoicon";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import { SessionContext } from "@/lib/providers";
@@ -16,34 +16,39 @@ const DashboardPage = () => {
   const { appearance, appearanceDispatch } = useAppearanceContext();
   const session = useContext(SessionContext);
 
-  const driverObj = driver({
-    popoverClass: "driverjs-theme",
-    showProgress: false,
-    steps: [
-      {
-        element: ".createModal",
-        popover: {
-          title: "Create New",
-          description: 'This button is used to create a new "time cube" timer',
-        },
-      },
-      {
-        element: ".themeDriver",
-        popover: {
-          title: "Appearance",
-          description: "Click here to change the appearance of the site",
-        },
-      },
-      {
-        element: ".dashboardDriver",
-        popover: {
-          title: "Preview Cards",
-          description:
-            "Preview cards for each time cube will appear here. Click them to go to the full page",
-        },
-      },
-    ],
-  });
+  const driverObj = useMemo(
+    () =>
+      driver({
+        popoverClass: "driverjs-theme",
+        showProgress: false,
+        steps: [
+          {
+            element: ".createModal",
+            popover: {
+              title: "Create New",
+              description:
+                'This button is used to create a new "time cube" timer',
+            },
+          },
+          {
+            element: ".themeDriver",
+            popover: {
+              title: "Appearance",
+              description: "Click here to change the appearance of the site",
+            },
+          },
+          {
+            element: ".dashboardDriver",
+            popover: {
+              title: "Preview Cards",
+              description:
+                "Preview cards for each time cube will appear here. Click them to go to the full page",
+            },
+          },
+        ],
+      }),
+    []
+  );
 
   const updateDashboardTutorial = async () => {
     if (session) {
